@@ -10,8 +10,16 @@ const router = express.Router()
  //Crear Post
  router.post('/', adminAuthMiddleware, postController.createPost)
 
+//Obtener todos los post
+router.get('/', postController.listPosts)
 
+//Obtener post por su id
+router.get('/:postId', postController.showPost)
 
+//Editar un post
+router.put('/:postId', adminAuthMiddleware, postController.editPost)
 
+//Delete post
+router.delete('/:postId', adminAuthMiddleware, postController.deletePost)
 
 export default router
