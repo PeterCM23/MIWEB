@@ -13,8 +13,8 @@ const init = async () => {
     // Borra todas las tablas existentes, si las hay
     await connection.query("DROP TABLE IF EXISTS files"); // Agrega esta línea
     await connection.query("DROP TABLE IF EXISTS posts");
-    await connection.query("DROP TABLE IF EXISTS admins");
     await connection.query("DROP TABLE IF EXISTS projects");
+    await connection.query("DROP TABLE IF EXISTS contact_form");
 
     console.log("Tablas borradas\n");
 
@@ -26,7 +26,9 @@ const init = async () => {
         id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
         title VARCHAR(255) NOT NULL,
         description TEXT,
-        folderPath VARCHAR(255),
+        folderPath VARCHAR(255) UNIQUE NOT NULL,
+        link VARCHAR(255),
+        miniatura VARCHAR(255),
         createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
         modifiedAt DATETIME ON UPDATE CURRENT_TIMESTAMP
       )
@@ -71,6 +73,19 @@ const init = async () => {
     `);
     console.log("- Tabla files creada\n");
 
+    // Agregar la tabla de formulario de contacto
+    console.log("- Creando tabla de formulario de contacto");
+    await connection.query(`
+  CREATE TABLE IF NOT EXISTS contact_form(
+    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    telefono VARCHAR(20) NOT NULL,
+    mensaje TEXT,
+    createdAt DATETIME DEFAULT CURRENT_TIMESTAMP
+  )
+`);
+    console.log("- Tabla de formulario de contacto creada\n");
     // Agrega aquí más tablas si es necesario
 
     console.log("Tablas creadas");

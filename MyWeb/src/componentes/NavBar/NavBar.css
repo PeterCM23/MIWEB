@@ -1,0 +1,138 @@
+/* Estilos generales de la barra de navegación */
+
+@font-face {
+  font-family: 'OctopusGame';
+  src: url('../../assets/fonts/OctopusGame.otf') format('opentype');
+}
+@font-face {
+  font-family: 'University';
+  src: url('../../assets/fonts/University.otf') format('opentype');
+}
+@font-face {
+  font-family: 'Roboto';
+  src: url('../../assets/fonts/Roboto/Roboto-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'OpenSans';
+  src: url('../../assets/fonts/Open_Sans/static/OpenSans-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Lato';
+  src: url('../../assets/fonts/Lato/Lato-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+.navBarActivator{
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  min-width: 200px;
+  min-height: 60%;
+  z-index: 13;
+}
+.navBarActivator button{
+  display: flex;
+  position: absolute;
+  font-size: 60px;
+  border: none;
+  color: #FF5D00;
+  background-color: #00488f00;
+  z-index: 13;
+}
+.navbar {
+  display: flex;
+  position: fixed;
+  width: 400px; /* Ancho fijo para la barra lateral */
+  max-height: auto ;
+
+  background-color: #FF5D00; /* Color de fondo de la barra de navegación */
+  flex-direction: column; /* Apila elementos verticalmente */
+  align-items: center;
+  border-bottom-right-radius:2.5% ;
+  border-top-right-radius: 2.5%;
+  padding: 10px 0; /* Ajusta el espaciado interno */
+  font-family: 'University';
+  font-size: 1.5rem;
+  border-bottom: #00488fbd  solid;
+  border-right:#00488fbd  solid ;
+  z-index: 13;
+  
+}
+
+.navbar-logo {
+  display: flex;
+  justify-content: flex-start;
+  padding: 10px; /* Ajusta el espaciado interno */
+}
+
+.navbar-logo p {
+  color: #E2DED0;
+}
+
+/* Estilos de la lista de elementos de navegación */
+.navbar-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+
+  padding: 10px;
+  
+}
+
+/* Estilos de los elementos de la lista */
+.navbar-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #00478F;
+ 
+  height: 3em; /* Cambia max-height a height */
+  border: 2px solid #06060763;
+  margin: 10px;
+  margin-bottom: 50px;
+  border-radius: 15%;
+  width: 80%; /* Ajusta el ancho al 100% para llenar el contenedor */
+  padding: 10px;
+
+}
+
+.navbar-item:hover {
+  color: #C3CEDA;
+  background-color: #2A231F;
+}
+
+/* Estilos para los enlaces */
+.navbar-item a {
+  text-decoration: none;
+   color: #D8E1E7; /* Color del texto de los enlaces */
+  transition: color 0.3s;
+}
+
+
+
+/* Estilos responsivos para pantallas pequeñas */
+@media (max-width: 768px) {
+  .navbar {
+    width: 100%; /* Ajusta el ancho al 100% para ocupar toda la pantalla */
+    height: auto;
+  }
+
+  .navbar-list {
+    flex-direction: column; /* Apila elementos verticalmente */
+  }
+
+  .navbar-item {
+    flex: 1;
+    margin: 10px;
+    text-align: center;
+  }
+}
+

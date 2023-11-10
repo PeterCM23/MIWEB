@@ -1,0 +1,78 @@
+/* Estilos para el formulario con la clase 'contact-form' */
+.contact-content{
+  display: flex;
+  flex-direction: column;
+  justify-content:first baseline; /* Centrado vertical */
+  align-items: center; /* Centrado horizontal */
+  height: 100vh; /* Asegura que ocupa toda la altura del viewport */
+}
+
+.contact-content h1{
+  font-family: 'Lato';
+    color:white;
+    background-color: #FF5D00;
+    width: 100%;
+    text-align: center;
+    padding: 20px;
+}
+
+.contact-form {
+    display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #00478F;
+  border-radius: 10px;
+  border: 2px solid #FF5D00;
+  max-width: 600px;
+  font-size: 1.3rem;
+  font-family: 'Roboto';
+  padding: 30px;
+  text-align: center;
+  margin-top: 20px;
+  position: relative;
+  color: #ccc;
+}
+
+/* Estilos para los encabezados del formulario */
+.contact-form h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+/* Estilos para etiquetas de campo */
+.contact-form label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+/* Estilos para campos de entrada de texto y área de texto */
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form input[type="tel"],
+.contact-form textarea {
+  width: 80%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Estilos para el botón de envío */
+.contact-form button[type="submit"] {
+  background-color: #FF5D00;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.contact-form button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+/* Estilos para el formulario en su conjunto */
+.contact-form form {
+  max-width: 100%;
+}

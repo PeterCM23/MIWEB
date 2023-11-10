@@ -1,0 +1,55 @@
+.project-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #00478F;
+  border-radius: 10px;
+  border: 2px solid #FF5D00;
+  max-width: 600px;
+  font-size: 1.3rem;
+  font-family: 'Roboto';
+  padding: 30px;
+  text-align: center;
+  margin-top: 20px;
+  position: relative; /* Añadido para el efecto plastificado */
+}
+
+.project-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  border-radius: 10px;
+  pointer-events: none;
+}
+
+.project-card h3 {
+  font-weight: bold;
+  font-size: 1.8rem;
+  margin: 10px 0;
+  font-family: 'Lato';
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+.project-card img {
+  max-height: 400px;
+  border-radius: 10px;
+  border: 0.8px solid #FF5D00;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  transform: translateY(0); /* Reflejo */
+}
+
+.project-card img:hover {
+  transform: translateY(4px); /* Efecto de elevación al pasar el mouse */
+  transition: transform 0.2s ease-in-out; /* Transición suave */
+}
+
+.project-card a{
+    color: #FF5D00;
+    text-decoration: none;
+}

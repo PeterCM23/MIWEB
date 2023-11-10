@@ -6,7 +6,7 @@ import fileUpload from 'express-fileupload'
 import rutasProyectos from './rutas/rutas_proyectos.js'
 import rutasTrasteo from './rutas/rutas_trasteo.js'
 import rutasPost from './rutas/rutas_post.js'
-
+import rutasContacto from './rutas/rutas_contacto.js'
 const app = express()
 
 const port = PORT
@@ -24,10 +24,11 @@ app.use(morgan("dev"))
 
 app.use("/images", express.static(UPLOADS_DIR))
 app.use("/video", express.static(VIDEO_DIR))
-app.use("/prjcts", express.static(PROJECTS_DIR))
+app.use("/projects", express.static(PROJECTS_DIR))
 
 app.use("/proyectos", rutasProyectos )
 app.use("/post", rutasPost)
+app.use("/contact", rutasContacto)
 app.use("/trasteo", rutasTrasteo )
 
 app.get('/',(req, res)=>{

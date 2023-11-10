@@ -28,16 +28,23 @@ async function getAllProjectsQuery() {
 // Crear Proyecto
 
 // La función newProjectQuery recibe el título, descripción 
-async function newProjectQuery(title, description, folderPath) {
+async function newProjectQuery(title, description, folderPath, link, miniatura ) {
   let connection;
 
   try {
     connection = await getPool();
-    console.log(title,description)
+    console.log(
+      "Valores antes de la inserción en la tabla projects:",
+      title,
+      description,
+      folderPath,
+      link,
+      miniatura
+    );
     // Insertar el proyecto en la tabla de proyectos
     const [result] = await connection.query(
-      "INSERT INTO projects (title, description, folderPath) VALUES (?, ?, ?)",
-      [title, description, folderPath]
+      "INSERT INTO projects (title, description, folderPath, link, miniatura) VALUES (?, ?, ?, ?, ?)",
+      [title, description, folderPath, link, miniatura]
     );
 
     // Obtener el ID del proyecto recién creado
@@ -61,24 +68,35 @@ async function newProjectQuery(title, description, folderPath) {
     if (connection) connection.release();
   }
 }
+
+
 async function insertFileQuery(filename, projectId) {
   let connection;
   try {
     connection = await getPool();
 
-    const [result] = await connection.query(
-      "INSERT INTO files (filename, project_id) VALUES (?, ?)",
-      [filename, projectId]
-    );
+    const query = `
+      INSERT INTO files (filename, project_id) VALUES (?, ?)
+    `;
 
-    const fileId = result.insertId;
-    return fileId;
+    const [result] = await connection.query(query, [filename, projectId]);
+
+    if (result.affectedRows === 1) {
+      return result.insertId;
+    } else {
+      throw new Error("Error al insertar el archivo en la base de datos");
+    }
   } catch (error) {
-    return error;
+    if (error && error.code === "ER_DUP_ENTRY") {
+      throw new Error("Ya existe un archivo con este nombre en este proyecto");
+    } else {
+      throw error;
+    }
   } finally {
     if (connection) connection.release();
   }
 }
+
 
 async function getProjectByIdFromDB(projectId) {
   let connection;

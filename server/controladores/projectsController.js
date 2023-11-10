@@ -29,10 +29,9 @@ async function getAllProjects(req, res, next) {
 
     res.send({
       status: "ok",
-      data: {
-        projects,
-      },
+      projects: projects,
     });
+
   } catch (err) {
     next(err);
   }
@@ -41,8 +40,9 @@ async function getAllProjects(req, res, next) {
 // Crear un proyecto nuevo
 
 async function createProjectAndUploadFile(req, res) {
-  const { title, description } = req.body;
+  const { title, description, link } = req.body;
   const folderPath = `${PROJECTS_DIR}/${title}`;
+  console.log("Cuerpo de la solicitud", req.body);
 
   try {
     // Verifica si el directorio de destino existe, y créalo si no
@@ -51,11 +51,33 @@ async function createProjectAndUploadFile(req, res) {
     if (req.files && req.files.projectFile) {
       const file = req.files.projectFile;
 
-      const project = await newProjectQuery(title, description, folderPath);
+      // Obtiene la ruta relativa de la miniatura
+      let miniaturaRelativePath = null;
+      if (req.files.miniatura) {
+        const miniaturaFile = req.files.miniatura;
+        // Renombra y mueve la miniatura a la carpeta de proyectos
+        const miniaturaPath = `${folderPath}/miniatura.jpg`; // Cambia el nombre y el formato según tu necesidad
+        await fs.move(miniaturaFile.tempFilePath, miniaturaPath);
+        console.log("Miniatura guardada correctamente en:", miniaturaPath);
+        miniaturaRelativePath = `projects/${title}/miniatura.jpg`;
+      }
+
+      const project = await newProjectQuery(
+        title,
+        description,
+        folderPath,
+        link,
+        miniaturaRelativePath // Almacena la ruta relativa de la miniatura
+      );
+      console.log(
+        "Proyecto antes de la inserción en la base de datos:",
+        project
+      );
 
       if (project instanceof Error) {
         throw project;
       }
+
       const projectId = project.id;
       // Mueve el archivo a la carpeta de proyectos
       await fs.move(file.tempFilePath, `${folderPath}/${file.name}`);
@@ -63,6 +85,7 @@ async function createProjectAndUploadFile(req, res) {
       // Inserta el archivo en la base de datos y obtén el ID del archivo
       const fileId = await insertFileQuery(file.name, projectId);
 
+      console.log("Proyecto y archivo subidos exitosamente");
       res.status(200).json({
         message: "Proyecto y archivo subidos exitosamente",
         project,
@@ -73,12 +96,20 @@ async function createProjectAndUploadFile(req, res) {
       res.status(400).json({ error: "No se proporcionó un archivo" });
     }
   } catch (error) {
-    res.status(500).json({
-      error: "Error al crear el proyecto o subir el archivo",
-      details: error.message,
-    });
+    if (error && error.code === "ER_DUP_ENTRY") {
+      res
+        .status(400)
+        .json({ error: "Ya existe un proyecto con este folderPath" });
+    } else {
+      console.error("Error en createProjectAndUploadFile:", error);
+      res.status(500).json({
+        error: "Error al crear el proyecto o subir el archivo",
+        details: error.message,
+      });
+    }
   }
 }
+
 
 // Obtener el proyecto por su id
 

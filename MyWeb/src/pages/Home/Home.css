@@ -1,0 +1,222 @@
+/* Estilos generales para la página */
+.home-content {
+  
+  width: 100%;
+  height: auto;
+  z-index: 1;
+  margin: 0 auto;
+  
+}
+.portada{
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  width: 100%;
+  border-bottom: solid #FF5D00 1.25px;
+}
+.portada-text{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  color: #D8E1E7;
+  
+}
+.portada-text h1{
+  font-family: 'University';
+  font-size: 6rem;
+}
+.portada-text p{
+  font-size: 3rem;
+  font-family: 'Roboto';
+  margin-top: -50px;
+}
+
+
+
+
+.portada img{
+  margin: 0 auto;
+  width: 100%;
+}
+
+
+
+/* Estilos para cada sección */
+.planet-section {
+  height: auto;
+  width: 100%; /* Limita el ancho máximo para contenido legible */
+  margin: 0; /* Espacio entre secciones */
+
+  padding-top: 20px;
+  padding-bottom: 20px;
+  cursor: auto;
+  
+  border-bottom: 2.5px solid #ff5e009f;
+  z-index: 0;
+  
+  background-color: #2A231F;
+  color: #D8E1E7;
+  display: flex; /* Agregamos display flex */
+  flex-direction: column; /* Alineación vertical de elementos */
+  justify-content: center; /* Alineación horizontal de elementos */
+  align-items: center; /* Alineación vertical de elementos */
+}
+
+
+
+
+
+.planet-section h2 {
+  padding: 5px;
+  margin: 0 auto;
+  font-size: 36px; /* Tamaño de título */
+  font-family: 'Lato';
+  margin-bottom: 5px;
+  
+
+}
+
+.planet-section p {
+  
+  
+  border-radius: 10px;
+  max-width: 400px;
+  font-size: 1.3rem;
+  font-family: 'Roboto'; /* Tamaño de texto */
+  
+  
+}
+.planet-section a {
+  color: #FF5D00;
+  text-decoration:solid;
+
+}
+/* Estilos para la lista de habilidades */
+.planet-section ul {
+  display: flex;
+  list-style-type: none;
+  padding: 0;
+}
+
+.planet-section li {
+  height: auto;
+  margin: 5px;
+  padding: 20px;
+  max-width: 400px;
+  background-color: #00478F;
+  border-radius: 10px;
+  border: #FF5D00 solid 2px;
+  text-align: center;
+}
+
+.planet-section li h4 {
+  font-weight: bold;
+  font-size: 1.8rem;
+  margin: 10px 0;
+  font-family: 'Lato';
+  text-align: center;
+}
+
+.aboutme-content{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+ 
+  margin: 10px 0;
+ 
+  text-align: center;
+  
+}
+
+#about-me img{
+  display: flex;
+  max-height: 500px;
+  margin-left: 15%;
+  
+}
+
+#about-me p {
+  background-color: #00478F;
+  border-radius: 10px;
+  border:#FF5D00 solid 2px;
+  max-width: 600px;
+  font-size: 20.8px;
+  font-family: 'Roboto';
+  padding: 30px;
+  text-align: center;
+ 
+}
+.featured-projects {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px; /* Espaciado entre tarjetas */
+}
+
+#skills ul{
+  display: flex;
+  flex-direction: column;
+}
+.skills-content {
+  display: flex;
+  flex-direction: row; /* Para alinear la lista y la imagen en fila */
+  align-items: center;
+  justify-content: space-between; /* Alinear verticalmente */
+}
+
+.skills-image {
+  display: flex;
+  justify-content: baseline;
+  color: #FF5D00;
+  max-width: 600px;
+  max-height: 600px;
+  margin-right: 50px; /* Espacio entre la lista de habilidades y la imagen */
+  border-radius: 10px;
+}
+
+.skills-image img {
+  max-width: 100%; /* Ajusta el ancho de la imagen según el contenedor */
+  border-radius: 10px;
+  border: solid #FF5D00 2px;
+}
+
+
+#work-experience h3{
+  color: #FF5D00;
+}
+
+#certifications h3 {
+  color: #FF5D00;
+}
+.contact-button {
+  position: fixed;
+  min-width: 50px;
+  min-height: 50px;
+  bottom: 50px;
+  right: 50px;
+  background-color: #ff5e0000;
+  color: #FFFFFF;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 60px;
+}
+
+.contact-button:hover {
+  background-color: #FF3F00;
+}
+
+/* Agrega estilos adicionales según tu contenido y preferencias */
+
+/* Media queries para hacerlo responsive */
+@media screen and (max-width: 768px) {
+  .planet-section {
+    margin: 10px 0; /* Espacio entre secciones en pantallas pequeñas */
+  }
+}
