@@ -2,6 +2,7 @@ import React from "react";
 import './ProjectCard.css'
 const { VITE_API_URL } = import.meta.env;
 const ProjectCard = ({ project }) => {
+  console.log(project)
   return (
     <div className="project-card">
       <h3>{project.title}</h3>

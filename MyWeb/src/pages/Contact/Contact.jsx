@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import './ContactForm.css';
+const { VITE_API_URL } = import.meta.env;
 const ContactForm = () => {
   const [formData, setFormData] = useState({
     nombre: "",
@@ -19,7 +20,7 @@ const ContactForm = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch("/ruta-al-controlador", {
+      const response = await fetch(`${VITE_API_URL}/contact`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -43,6 +44,12 @@ const ContactForm = () => {
   return (
     <div className="contact-content">
       <h1>Contacto</h1>
+      <div className="horizont">
+      <p>¡Gracias por visitar mi página web! Espero que hayas disfrutado explorando todo lo que tengo para ofrecer. Tu interés es muy valioso para mí.
+<br /><br />
+Estoy disponible y emocionado para trabajar en proyectos colaborativos, ya sea como asalariado o como profesional autónomo. Mi experiencia y dedicación me permiten abordar desafíos con creatividad y compromiso. Si tienes algún proyecto en mente o necesitas ayuda en alguna iniciativa, estaré encantado de escucharte y discutir cómo puedo contribuir a su éxito.
+<br /><br />
+No dudes en completar el formulario a continuación para ponerte en contacto conmigo. Estoy ansioso por conocer más sobre tus necesidades y explorar las posibles oportunidades de colaboración. ¡Gracias de nuevo y espero saber de ti pronto!</p>
       <form onSubmit={handleSubmit} className="contact-form">
         <label htmlFor="nombre">Nombre:</label>
         <input
@@ -86,7 +93,8 @@ const ContactForm = () => {
         <button type="submit">Enviar Mensaje</button>
       </form>
 
-      <div>{message}</div>
+      
+      </div>
     </div>
   );
 };

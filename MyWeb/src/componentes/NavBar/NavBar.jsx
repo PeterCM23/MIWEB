@@ -53,9 +53,9 @@ const [isNavBarVisible, setIsNavBarVisible] = useState(false);
           <li className="navbar-item">
             <a href="/Contacto">Contacto</a>
           </li>
-          <li className="navbar-item">
+          {/* <li className="navbar-item">
             <a href="/alohomora">Trasteo</a>
-          </li>
+          </li> */}
         </ul>
       </div>
     </div>

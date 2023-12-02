@@ -7,11 +7,16 @@ import ProjectCard from "../../componentes/ProjectCard.jsx/ProjectCard";
 import Cabeza from './imagen-home.png'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import 'animate.css'
+import { useInView } from 'react-intersection-observer'
 const { VITE_API_URL } = import.meta.env;
 const Home = () => {
     const [projects, setProjects] = useState([]);
-    
-
+    const [refAboutMe, inViewAboutMe]= useInView({ triggerOnce: true });
+    const [refSkills, inViewSkills]= useInView({ triggerOnce: true });
+    const [refCertifications, inViewCertifications]= useInView({ triggerOnce: true });
+    const [refProjects, inViewProjects]= useInView({ triggerOnce: true });
+    const [refWorkExp, inViewWorkExp]= useInView({ triggerOnce: true });
     // Función para seleccionar proyectos aleatorios
     const selectRandomProjects = (projects, count) => {
       const shuffledProjects = projects.sort(() => 0.5 - Math.random());
@@ -45,16 +50,17 @@ const Home = () => {
     <div>
       <div className="portada">
         <section className="portada-text">
-          <h1>Pedro Cruz</h1>
-          <p>DESARROLLADOR FULLSTACK</p>
+          <h1 className="animate__animated animate__jackInTheBox">Pedro Cruz</h1>
+          <p className="animate__animated animate__jackInTheBox">DESARROLLADOR FULLSTACK</p>
         </section>
         <img src={Portada} alt="portada-img" />
       </div>
 
       <div className="home-content">
-        <section id="about-me" className="planet-section">
-          <h2 className="section-title">SOBRE MI</h2>
-          <div className="aboutme-content">
+        <section ref={refAboutMe} id="about-me" className="planet-section">
+        <h2 className={`section-title animate__animated ${inViewAboutMe ? 'animate__fadeInLeft' : ''}`}> SOBRE MI</h2>
+
+          <div className={`aboutme-content animate__animated ${ inViewAboutMe ?'animate__fadeInLeft': ''}`}>
             <p>
               Soy un apasionado de la programación en constante búsqueda de
               nuevos desafíos. Mi viaje en el mundo del desarrollo es una
@@ -66,9 +72,9 @@ const Home = () => {
           </div>
         </section>
 
-        <section id="skills" className="planet-section">
-          <h2 className="section-title">MIS HABILIDADES</h2>
-          <div className="skills-content">
+        <section ref={refSkills} id="skills" className="planet-section">
+          <h2 className={`section-title animate__animated ${inViewSkills ? 'animate__fadeInRight':''}`}>MIS HABILIDADES</h2>
+          <div className={`skills-content animate__animated ${inViewSkills ? 'animate__fadeInRight':''}`}>
             <div className="skills-image">
               <img src={Cabeza} alt="Imagen de habilidades" />
             </div>
@@ -103,9 +109,9 @@ const Home = () => {
           </div>
         </section>
 
-        <section id="featured-projects" className="planet-section">
-          <h2 className="section-title">PROYECTOS DESTACADOS</h2>
-          <div className="featured-projects">
+        <section ref={refProjects} id="featured-projects" className="planet-section">
+          <h2 className={`section-title animate__animated ${inViewProjects ? 'animate__fadeIn':''}`}>PROYECTOS DESTACADOS</h2>
+          <div className={`featured-projects animate__animated ${inViewProjects ? 'animate__fadeIn':''}`}>
             {Array.isArray(randomProjects) && randomProjects.length > 0 ? (
               randomProjects.map((project) => (
                 <ProjectCard key={project.id} project={project} /> // Renderiza cada proyecto en una tarjeta
@@ -116,9 +122,9 @@ const Home = () => {
           </div>
         </section>
 
-        <section id="work-experience" className="planet-section">
-          <h2 className="section-title">EXPERIENCIA LABORAL</h2>
-          <ul>
+        <section ref={refWorkExp} id="work-experience" className="planet-section">
+          <h2 className={`section-title animate__animated ${inViewWorkExp ? 'animate__fadeInRight':''}`}>EXPERIENCIA LABORAL</h2>
+          <ul className={`animate__animated ${inViewWorkExp ? 'animate__fadeInRight':''}`}>
             <li>
               <h2>2020-2021</h2>
               <h3>CEBU by La Bodeguilla</h3>
@@ -156,9 +162,9 @@ const Home = () => {
           </ul>
         </section>
 
-        <section id="certifications" className="planet-section">
-          <h2 className="section-title">CERTIFICACIONES</h2>
-          <ul>
+        <section ref={refCertifications} id="certifications" className="planet-section">
+          <h2 className={`section-title animate__animated ${inViewCertifications ? 'animate__fadeInUp' : ''}`}>CERTIFICACIONES</h2>
+          <ul className={`animate__animated ${inViewCertifications ? 'animate__fadeInUp' : ''}`}> 
             <li>
               <h4> Desarrollador Web FullStack </h4>
               <h3>HACK A BOSS</h3>

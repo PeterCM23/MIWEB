@@ -1,4 +1,8 @@
 /* Estilos generales para la página */
+
+.animate__animated{
+  animation-duration: 3s;
+}
 .home-content {
   
   width: 100%;
@@ -13,6 +17,7 @@
   justify-content: center;
   align-items: center;
   margin: 0;
+  height: 100vh;
   width: 100%;
   border-bottom: solid #FF5D00 1.25px;
 }
@@ -39,6 +44,7 @@
 
 .portada img{
   margin: 0 auto;
+  height: 100vh;
   width: 100%;
 }
 
@@ -57,7 +63,7 @@
   border-bottom: 2.5px solid #ff5e009f;
   z-index: 0;
   
-  background-color: #2A231F;
+  background-color: #00478F;
   color: #D8E1E7;
   display: flex; /* Agregamos display flex */
   flex-direction: column; /* Alineación vertical de elementos */

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import './ContactForm.css'
+const { VITE_API_URL } = import.meta.env;
 const ContactForm = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -9,7 +10,6 @@ const ContactForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Crear un objeto con los datos del formulario
     const formData = {
       nombre: name,
       email,
@@ -18,7 +18,7 @@ const ContactForm = () => {
     };
 
     try {
-      const response = await fetch("/ruta-del-servidor", {
+      const response = await fetch(`${VITE_API_URL}/contact`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -27,15 +27,15 @@ const ContactForm = () => {
       });
 
       if (response.ok) {
-        // La solicitud se completó con éxito
         const data = await response.json();
         console.log(data);
         // Puedes realizar otras acciones aquí, como mostrar un mensaje de éxito al usuario.
       } else {
-        // La solicitud falló, manejar el error
+        // Manejo de errores: Muestra un mensaje de error al usuario o toma otra acción.
         console.error("Error al enviar el formulario");
       }
     } catch (error) {
+      // Manejo de errores de red: Muestra un mensaje de error al usuario o toma otra acción.
       console.error("Error de red:", error);
     }
   };
